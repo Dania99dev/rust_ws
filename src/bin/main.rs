@@ -17,6 +17,8 @@ fn main() {
             handle_connection(stream);
         });
     }
+
+    println!("Shutting down.");
 }
 
 fn handle_connection(mut stream: TcpStream) {
@@ -34,6 +36,7 @@ fn handle_connection(mut stream: TcpStream) {
     } else {
         ("HTTP/1.1 404 NOT FOUND", "404.html")
     };
+
     let contents = fs::read_to_string(filename).unwrap();
 
     let response = format!(
